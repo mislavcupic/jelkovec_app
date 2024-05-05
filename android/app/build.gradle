@@ -14,12 +14,12 @@ if (localPropertiesFile.exists()) {
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    flutterVersionCode = '1'
+    flutterVersionCode = '2'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
-    flutterVersionName = '1.0'
+    flutterVersionName = '1.0.1'
 }
 
 android {
@@ -34,7 +34,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.jelkovec_app"
+        applicationId "hr.jelkovec_app"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdkVersion flutter.minSdkVersion
@@ -54,4 +54,21 @@ android {
 
 flutter {
     source '../..'
+}
+android {
+
+    signingConfigs {
+        release {
+            keyAlias 'my-key-alias'
+            keyPassword 'Bioskop7'
+            storeFile file('my-release-key.keystore')
+            storePassword 'Bioskop7'
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+
+        }
+    }
 }

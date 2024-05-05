@@ -9,11 +9,12 @@ class ActivityCard extends StatelessWidget {
   final String text;
   final String route;
 
-  const ActivityCard({super.key, 
+  const ActivityCard({
+    Key? key,
     required this.imagePath,
     required this.text,
     required this.route,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +62,7 @@ class ActivityCard extends StatelessWidget {
 }
 
 class Izvannastavne extends StatelessWidget {
-  const Izvannastavne({super.key});
+  const Izvannastavne({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -84,33 +85,36 @@ class Izvannastavne extends StatelessWidget {
             },
           ),
         ),
-        body: Container(
-          padding: const EdgeInsets.all(8),
-          child: const Wrap(
-            alignment: WrapAlignment.spaceAround,
-            children: [
-              ActivityCard(
-                imagePath: "android/assets/images/robotics.jpg",
-                text: "Robotika",
-                route: "/robotika",
-              ),
-              ActivityCard(
-                imagePath: "android/assets/images/firstaid.jpg",
-                text: "Prva pomoć",
-                route: "/prvapomoc",
-              ),
-              ActivityCard(
-                imagePath: "android/assets/images/klizanje2.jpg",
-                text: "TZK",
-                route: "/tzk",
-              ),
-              ActivityCard(
-                imagePath: "android/assets/images/people.jpg",
-                text: "Američka kultura",
-                route: "/americka",
-              ),
-              // Add more ActivityCard widgets as needed
-            ],
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Container(
+            padding: const EdgeInsets.all(8),
+            child: Wrap(
+              alignment: WrapAlignment.spaceAround,
+              children: [
+                ActivityCard(
+                  imagePath: "android/assets/images/robotics.jpg",
+                  text: "Robotika",
+                  route: "/robotika",
+                ),
+                ActivityCard(
+                  imagePath: "android/assets/images/firstaid.jpg",
+                  text: "Prva pomoć",
+                  route: "/prvapomoc",
+                ),
+                ActivityCard(
+                  imagePath: "android/assets/images/klizanje2.jpg",
+                  text: "TZK",
+                  route: "/tzk",
+                ),
+                ActivityCard(
+                  imagePath: "android/assets/images/people.jpg",
+                  text: "Američka kultura",
+                  route: "/americka",
+                ),
+                // Dodajte više ActivityCard widgeta po potrebi
+              ],
+            ),
           ),
         ),
       ),

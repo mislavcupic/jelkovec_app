@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AmerickaKultura extends StatelessWidget {
-  const AmerickaKultura({super.key});
+  const AmerickaKultura({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -9,24 +9,25 @@ class AmerickaKultura extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Američka kultura'),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Image.asset(
-            'android/assets/images/people.jpg',
-            fit: BoxFit.cover,
-          ),
-          const Expanded(
-            child: Padding(
-              padding: EdgeInsets.all(8.0),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Image.asset(
+              'android/assets/images/people.jpg',
+              fit: BoxFit.cover,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Text(
                 'Tekst za američku kulturu',
                 style: TextStyle(fontSize: 16),
                 textAlign: TextAlign.justify,
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

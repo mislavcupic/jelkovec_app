@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
-
-import 'package:jelkovec_app/Prirodoslovni.dart';
-import 'package:jelkovec_app/SkolaInfo.dart';
-import 'package:jelkovec_app/Jezici.dart';
-import 'package:jelkovec_app/Drustveni.dart';
 import 'package:jelkovec_app/Electric.dart';
+import 'package:jelkovec_app/Jezici.dart';
+import 'package:jelkovec_app/Prirodoslovni.dart';
 import 'package:jelkovec_app/Anketa.dart';
-
+import 'package:jelkovec_app/Drustveni.dart';
+import 'package:jelkovec_app/SkolaInfo.dart';
 
 class ActivityCard extends StatelessWidget {
   final String imagePath;
   final String text;
   final String route;
 
-  const ActivityCard({super.key, 
+  const ActivityCard({
+    Key? key,
     required this.imagePath,
     required this.text,
     required this.route,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -65,21 +64,20 @@ class ActivityCard extends StatelessWidget {
 }
 
 class Home extends StatelessWidget {
-  const Home({super.key});
+  const Home({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        '/prirodoslovni': (context) => const Prirodoslovni(),
         '/o_skoli': (context) => const SkolaInfo(),
+        '/prirodoslovni': (context) => const Prirodoslovni(),
         '/jezici': (context) => const Jezici(),
         '/drustveni': (context) => const Drustveni(),
         '/electric': (context) => const Electric(),
         '/anketa': (context) => const Anketa(),
       },
-      initialRoute: '/home',
       home: Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -91,42 +89,45 @@ class Home extends StatelessWidget {
             },
           ),
         ),
-        body: Container(
-          padding: const EdgeInsets.all(20.0),
-          child: const Wrap(
-            alignment: WrapAlignment.spaceAround,
-            children: [
-              ActivityCard(
-                imagePath: "android/assets/images/jelkovec.png",
-                text: "O Srednjoj školi Jelkovec",
-                route: "/o_skoli",
-              ),
-              ActivityCard(
-                imagePath: "android/assets/images/electrical2.jpg",
-                text: "Nastavne aktivnosti u elektrotehnici",
-                route: "/electric",
-              ),
-              ActivityCard(
-                imagePath: "android/assets/images/math.jpg",
-                text: "Aktivnosti u prirodoslovnom području",
-                route: "/prirodoslovni",
-              ),
-              ActivityCard(
-                imagePath: "android/assets/images/languages.png",
-                text: "Jezični aktiv",
-                route: "/jezici",
-              ),
-              ActivityCard(
-                imagePath: "android/assets/images/people.jpg",
-                text: "Društvene aktivnosti",
-                route: "/drustveni",
-              ),
-              ActivityCard(
-                imagePath: "android/assets/images/anketa.jpg",
-                text: "Informativna anketa",
-                route: "/anketa",
-              ),
-            ],
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Container(
+            padding: const EdgeInsets.all(20.0),
+            child: Wrap(
+              alignment: WrapAlignment.spaceAround,
+              children: [
+                ActivityCard(
+                  imagePath: "android/assets/images/jelkovec.png",
+                  text: "O Srednjoj školi Jelkovec",
+                  route: "/o_skoli",
+                ),
+                ActivityCard(
+                  imagePath: "android/assets/images/electrical2.jpg",
+                  text: "Nastavne aktivnosti u elektrotehnici",
+                  route: "/electric",
+                ),
+                ActivityCard(
+                  imagePath: "android/assets/images/math.jpg",
+                  text: "Aktivnosti u prirodoslovnom području",
+                  route: "/prirodoslovni",
+                ),
+                ActivityCard(
+                  imagePath: "android/assets/images/languages.png",
+                  text: "Jezični aktiv",
+                  route: "/jezici",
+                ),
+                ActivityCard(
+                  imagePath: "android/assets/images/people.jpg",
+                  text: "Društvene aktivnosti",
+                  route: "/drustveni",
+                ),
+                ActivityCard(
+                  imagePath: "android/assets/images/anketa.jpg",
+                  text: "Informativna anketa",
+                  route: "/anketa",
+                ),
+              ],
+            ),
           ),
         ),
       ),
