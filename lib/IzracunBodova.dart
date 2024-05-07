@@ -8,24 +8,24 @@ class IzracunBodova extends StatefulWidget {
 }
 
 class _IzracunBodovaState extends State<IzracunBodova> {
-  // Promijenjene varijable za kalkulaciju u double
-  double opciUspjeh5 = 0;
-  double opciUspjeh6 = 0;
-  double opciUspjeh7 = 0;
-  double opciUspjeh8 = 0;
-  double hrvatskiJezik7 = 0;
-  double matematika7 = 0;
-  double hrvatskiJezik8 = 0;
-  double matematika8 = 0;
-  double straniJezik7 = 0;
-  double straniJezik8 = 0;
-  double kemija7 = 0;
-  double kemija8 = 0;
-  double fizika7 = 0;
-  double fizika8 = 0;
-  double tehnicki7 = 0;
-  double tehnicki8 = 0;
-  double ukupnoBodova = 0;
+  // Promijenjene varijable za kalkulaciju u int
+  int opciUspjeh5 = 1;
+  int opciUspjeh6 = 1;
+  int opciUspjeh7 = 1;
+  int opciUspjeh8 = 1;
+  int hrvatskiJezik7 = 1;
+  int matematika7 = 1;
+  int hrvatskiJezik8 = 1;
+  int matematika8 = 1;
+  int straniJezik7 = 1;
+  int straniJezik8 = 1;
+  int kemija7 = 1;
+  int kemija8 = 1;
+  int fizika7 = 1;
+  int fizika8 = 1;
+  int tehnicki7 = 1;
+  int tehnicki8 = 1;
+  int ukupnoBodova = 1;
 
   // Declare variable to store selected smjer
   String selectedSmjer = '';
@@ -182,22 +182,22 @@ class _IzracunBodovaState extends State<IzracunBodova> {
               ElevatedButton(
                 onPressed: () async {
                   // Provjerite jesu li sva polja popunjena
-                  if (opciUspjeh5 == 0 ||
-                      opciUspjeh6 == 0 ||
-                      opciUspjeh7 == 0 ||
-                      opciUspjeh8 == 0 ||
-                      hrvatskiJezik7 == 0 ||
-                      matematika7 == 0 ||
-                      hrvatskiJezik8 == 0 ||
-                      matematika8 == 0 ||
-                      straniJezik7 == 0 ||
-                      straniJezik8 == 0 ||
-                      kemija7 == 0 ||
-                      kemija8 == 0 ||
-                      fizika7 == 0 ||
-                      fizika8 == 0 ||
-                      tehnicki7 == 0 ||
-                      tehnicki8 == 0) {
+                  if (opciUspjeh5 == 1 ||
+                      opciUspjeh6 == 1 ||
+                      opciUspjeh7 == 1 ||
+                      opciUspjeh8 == 1 ||
+                      hrvatskiJezik7 == 1 ||
+                      matematika7 == 1 ||
+                      hrvatskiJezik8 == 1 ||
+                      matematika8 == 1 ||
+                      straniJezik7 == 1 ||
+                      straniJezik8 == 1 ||
+                      kemija7 == 1 ||
+                      kemija8 == 1 ||
+                      fizika7 == 1 ||
+                      fizika8 == 1 ||
+                      tehnicki7 == 1 ||
+                      tehnicki8 == 1) {
                     // Ako nisu sva polja popunjena, prikažite poruku
                     showDialog(
                       context: context,
@@ -296,8 +296,7 @@ class _IzracunBodovaState extends State<IzracunBodova> {
   }
 
   // Function to build slider
-  Widget _buildSlider(String labelText, double value,
-      void Function(double) onChanged) {
+  Widget _buildSlider(String labelText, int value, void Function(int) onChanged) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Column(
@@ -305,22 +304,21 @@ class _IzracunBodovaState extends State<IzracunBodova> {
         children: [
           Text(labelText),
           Slider(
-            value: value,
-            min: 0,
+            value: value.toDouble(),
+            min: 1,
             max: 5,
-            divisions: 5,
+            divisions: 4,
             label: value.toString(),
-            onChanged: onChanged,
+            onChanged: (double newValue) {
+              onChanged(newValue.round());
+            },
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('0'),
               Text('1'),
-              Text('2'),
-              Text('3'),
-              Text('4'),
-              Text('5'),
+
+              Text('5')
             ],
           ),
         ],
