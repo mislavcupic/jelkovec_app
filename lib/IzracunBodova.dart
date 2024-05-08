@@ -181,113 +181,126 @@ class _IzracunBodovaState extends State<IzracunBodova> {
               // Button to calculate
               ElevatedButton(
                 onPressed: () async {
-                  // Provjerite jesu li sva polja popunjena
-                  if (opciUspjeh5 == 1 ||
-                      opciUspjeh6 == 1 ||
-                      opciUspjeh7 == 1 ||
-                      opciUspjeh8 == 1 ||
-                      hrvatskiJezik7 == 1 ||
-                      matematika7 == 1 ||
-                      hrvatskiJezik8 == 1 ||
-                      matematika8 == 1 ||
-                      straniJezik7 == 1 ||
-                      straniJezik8 == 1 ||
-                      kemija7 == 1 ||
-                      kemija8 == 1 ||
-                      fizika7 == 1 ||
-                      fizika8 == 1 ||
-                      tehnicki7 == 1 ||
-                      tehnicki8 == 1) {
-                    // Ako nisu sva polja popunjena, prikažite poruku
+                  // Check if smjer is selected
+                  if (selectedSmjer.isEmpty) {
+                    // If smjer is not selected, show AlertDialog
                     showDialog(
                       context: context,
-                      builder: (context) =>
-                          AlertDialog(
-                            title: const Text('Upozorenje'),
-                            content: const Text(
-                                'Molimo ispunite sva polja prije izračuna bodova.'),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  print(ukupnoBodova);
-                                  Navigator.pop(context);
-                                },
-                                child: const Text('OK'),
-                              ),
-                            ],
+                      builder: (context) => AlertDialog(
+                        title: Text('Upozorenje'),
+                        content: Text('Morate odabrati smjer i unijeti ocjene!'),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text('OK'),
                           ),
+                        ],
+                      ),
                     );
                   } else {
-                    // Ako jesu, izračunajte ukupne bodove
-                    ukupnoBodova = opciUspjeh5 +
-                        opciUspjeh6 +
-                        opciUspjeh7 +
-                        opciUspjeh8 +
-                        hrvatskiJezik7 +
-                        matematika7 +
-                        hrvatskiJezik8 +
-                        matematika8 +
-                        straniJezik7 +
-                        straniJezik8 +
-                        kemija7 +
-                        kemija8 +
-                        fizika7 +
-                        fizika8 +
-                        tehnicki7 +
-                        tehnicki8;
+                    // If smjer is selected, continue with calculations
+                    // Check if all fields are filled
+                    if (opciUspjeh5 == 1 ||
+                        opciUspjeh6 == 1 ||
+                        opciUspjeh7 == 1 ||
+                        opciUspjeh8 == 1 ||
+                        hrvatskiJezik7 == 1 ||
+                        matematika7 == 1 ||
+                        hrvatskiJezik8 == 1 ||
+                        matematika8 == 1 ||
+                        straniJezik7 == 1 ||
+                        straniJezik8 == 1 ||
+                        kemija7 == 1 ||
+                        kemija8 == 1 ||
+                        fizika7 == 1 ||
+                        fizika8 == 1 ||
+                        tehnicki7 == 1 ||
+                        tehnicki8 == 1) {
+                      // If not all fields are filled, show a message
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: Text('Upozorenje'),
+                          content: Text('Molimo ispunite sva polja prije izračuna bodova.'),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text('OK'),
+                            ),
+                          ],
+                        ),
+                      );
+                    } else {
+                      // If all fields are filled, calculate the total points
+                      ukupnoBodova = opciUspjeh5 +
+                          opciUspjeh6 +
+                          opciUspjeh7 +
+                          opciUspjeh8 +
+                          hrvatskiJezik7 +
+                          matematika7 +
+                          hrvatskiJezik8 +
+                          matematika8 +
+                          straniJezik7 +
+                          straniJezik8 +
+                          kemija7 +
+                          kemija8 +
+                          fizika7 +
+                          fizika8 +
+                          tehnicki7 +
+                          tehnicki8;
 
-                    // Provjerite je li ukupni bodovi različiti od 0
-                    if (ukupnoBodova != 0) {
-                      // Dobijte bodovni prag za odabrani smjer
-                      int bodovniPragSmjera = getBodovniPrag(selectedSmjer);
+                      // Check if the total points are not 0
+                      if (ukupnoBodova != 0) {
+                        // Get the score threshold for the selected smjer
+                        int bodovniPragSmjera = getBodovniPrag(selectedSmjer);
 
-                      // Provjerite usporedbu ukupnih bodova s bodovnim pragom za odabrani smjer
-                      if (ukupnoBodova > bodovniPragSmjera) {
-                        // Ako jesu, čestitajte
-                        showDialog(
-                          context: context,
-                          builder: (context) =>
-                              AlertDialog(
-                                title: Text(
-                                    'Čestitamo! Procijenjeni broj bodova je $ukupnoBodova'),
-                                content: const Text(
-                                    'Imate velike šanse za upis našeg smjera.'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: const Text('OK'),
-                                  ),
-                                ],
-                              ),
-                        );
-                      } else {
-                        // Ako nisu, upozorite korisnika
-                        showDialog(
-                          context: context,
-                          builder: (context) =>
-                              AlertDialog(
-                                title: Text(
-                                    'Vaš procijenjeni broj bodova je $ukupnoBodova'),
-                                content: const Text(
-                                    'Broj bodova koji ste ostvarili nije dovoljan za upis na odabrani smjer. Nastavite se truditi!'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: const Text('OK'),
-                                  ),
-                                ],
-                              ),
-                        );
+                        // Check the comparison of total points with the score threshold for the selected smjer
+                        if (ukupnoBodova > bodovniPragSmjera) {
+                          // If they are higher, congratulate the user
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: Text('Čestitamo! Procijenjeni broj bodova je $ukupnoBodova'),
+                              content: Text('Imate velike šanse za upis našeg smjera.'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text('OK'),
+                                ),
+                              ],
+                            ),
+                          );
+                        } else {
+                          // If they are not higher, warn the user
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: Text('Vaš procijenjeni broj bodova je $ukupnoBodova'),
+                              content: Text('Broj bodova koji ste ostvarili nije dovoljan za upis na odabrani smjer. Nastavite se truditi!'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text('OK'),
+                                ),
+                              ],
+                            ),
+                          );
+                        }
                       }
                     }
                   }
                 },
                 child: const Text('Izračunaj'),
               ),
+
             ],
           ),
         ),
@@ -296,28 +309,45 @@ class _IzracunBodovaState extends State<IzracunBodova> {
   }
 
   // Function to build slider
-  Widget _buildSlider(String labelText, int value, void Function(int) onChanged) {
+  Widget _buildSlider(String labelText, int value,
+      void Function(int) onChanged) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: const EdgeInsets.symmetric(vertical: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(labelText),
-          Slider(
-            value: value.toDouble(),
-            min: 1,
-            max: 5,
-            divisions: 4,
-            label: value.toString(),
-            onChanged: (double newValue) {
-              onChanged(newValue.round());
-            },
+          SliderTheme(
+            data: SliderTheme.of(context).copyWith(
+              activeTrackColor: Colors.blue[700],
+              // Adjust the active track color as needed
+              inactiveTrackColor: Colors.grey[300],
+              // Adjust the inactive track color as needed
+              thumbColor: Colors.orangeAccent,
+              // Adjust the thumb color as needed
+              overlayColor: Colors.blue.withAlpha(32),
+              // Adjust the overlay color as needed
+              thumbShape: RoundSliderThumbShape(enabledThumbRadius: 12.0),
+              // Adjust the thumb shape and size
+              overlayShape: RoundSliderOverlayShape(overlayRadius: 24.0),
+              // Adjust the overlay shape and size
+              trackHeight: 45.0, // Adjust the track height to make it thicker
+            ),
+            child: Slider(
+              value: value.toDouble(),
+              min: 1,
+              max: 5,
+              divisions: 4,
+              label: value.toString(),
+              onChanged: (double newValue) {
+                onChanged(newValue.round());
+              },
+            ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text('1'),
-
               Text('5')
             ],
           ),
