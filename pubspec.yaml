@@ -39,7 +39,7 @@ dependencies:
   carousel_slider: any
   url_launcher: any
 
-  location: ^6.0.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
