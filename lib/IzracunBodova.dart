@@ -325,7 +325,7 @@ class _IzracunBodovaState extends State<IzracunBodova> {
               // Adjust the inactive track color as needed
               thumbColor: Colors.orangeAccent,
               // Adjust the thumb color as needed
-              overlayColor: Colors.blue.withAlpha(32),
+              overlayColor: Colors.blue[700],
               // Adjust the overlay color as needed
               thumbShape: RoundSliderThumbShape(enabledThumbRadius: 12.0),
               // Adjust the thumb shape and size

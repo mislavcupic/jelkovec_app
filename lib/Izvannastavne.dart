@@ -3,6 +3,7 @@ import 'package:jelkovec_app/PrvaPomoc.dart';
 import 'package:jelkovec_app/Robotika.dart';
 import 'package:jelkovec_app/Tzk.dart';
 import 'package:jelkovec_app/AmerickaKultura.dart';
+import 'package:jelkovec_app/Siz.dart';
 
 class ActivityCard extends StatelessWidget {
   final String imagePath;
@@ -23,7 +24,6 @@ class ActivityCard extends StatelessWidget {
         Navigator.pushNamed(context, route);
       },
       child: Container(
-        width: 150,
         margin: const EdgeInsets.all(8),
         decoration: BoxDecoration(
           color: Colors.white,
@@ -36,23 +36,35 @@ class ActivityCard extends StatelessWidget {
             ),
           ],
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: Stack(
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(50),
+              borderRadius: BorderRadius.circular(16),
               child: Image.asset(
                 imagePath,
-                width: 100,
-                height: 100,
+                width: double.infinity,
+                height: 150,
                 fit: BoxFit.cover,
               ),
             ),
-            const SizedBox(height: 8),
-            Text(
-              text,
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 14),
+            Container(
+              width: double.infinity,
+              height: 150,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                color: Colors.black.withOpacity(0.5),
+              ),
+              child: Center(
+                child: Text(
+                  text,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
             ),
           ],
         ),
@@ -60,6 +72,7 @@ class ActivityCard extends StatelessWidget {
     );
   }
 }
+
 
 class Izvannastavne extends StatelessWidget {
   const Izvannastavne({Key? key}) : super(key: key);
@@ -73,11 +86,12 @@ class Izvannastavne extends StatelessWidget {
         '/robotika': (context) => const Robotika(),
         '/tzk': (context) =>  Tzk(),
         '/americka': (context) => const AmerickaKultura(),
+        '/siz': (context) => const Siz(),
       },
       home: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text("Izvannastavne aktivnosti"),
+          title: const Text("Kurikularne aktivnosti"),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
@@ -85,36 +99,40 @@ class Izvannastavne extends StatelessWidget {
             },
           ),
         ),
-        body: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Container(
-            padding: const EdgeInsets.all(8),
-            child: Wrap(
-              alignment: WrapAlignment.spaceAround,
-              children: [
-                ActivityCard(
-                  imagePath: "android/assets/images/robotics.jpg",
-                  text: "Robotika",
-                  route: "/robotika",
-                ),
-                ActivityCard(
-                  imagePath: "android/assets/images/firstaid.jpg",
-                  text: "Prva pomoć",
-                  route: "/prvapomoc",
-                ),
-                ActivityCard(
-                  imagePath: "android/assets/images/klizanje2.jpg",
-                  text: "TZK",
-                  route: "/tzk",
-                ),
-                ActivityCard(
-                  imagePath: "android/assets/images/people.jpg",
-                  text: "Američka kultura",
-                  route: "/americka",
-                ),
-                // Dodajte više ActivityCard widgeta po potrebi
-              ],
-            ),
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: GridView.count(
+            crossAxisCount: 2,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+            children: [
+              ActivityCard(
+                imagePath: "android/assets/images/robotics.jpg",
+                text: "Robotika",
+                route: "/robotika",
+              ),
+              ActivityCard(
+                imagePath: "android/assets/images/firstaid.jpg",
+                text: "Prva pomoć",
+                route: "/prvapomoc",
+              ),
+              ActivityCard(
+                imagePath: "android/assets/images/klizanje2.jpg",
+                text: "TZK",
+                route: "/tzk",
+              ),
+              ActivityCard(
+                imagePath: "android/assets/images/people.jpg",
+                text: "Američka kultura",
+                route: "/americka",
+              ),
+              ActivityCard(
+                imagePath: "android/assets/images/siz.jpg",
+                text: "Škola i zajednica",
+                route: "/siz",
+              ),
+              // Dodajte više ActivityCard widgeta po potrebi
+            ],
           ),
         ),
       ),
