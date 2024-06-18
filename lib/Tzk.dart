@@ -49,7 +49,7 @@ class Tzk extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                'Tekst TZK...',
+                'Fakultativna nastava iz tjelesne i zdravstvene kulture stiže kao vrlo važan odgovor naše škole na činjenicu da je sve veći broj mladih u vremenu razvoja tehnologije slabije aktivno i potrebno je vratiti mlade u tjelesnu kondiciju te im ponuditi rekreativne sadržaje u kojima mogu razvijati i unaprijediti svoje motoričke vještine. Nastavnik ih uključuje u širok raspon aktivnosti. Uskoro poveznica na njihov instagram profil.',
                 style: TextStyle(fontSize: 20),
                 textAlign: TextAlign.justify,
               ),

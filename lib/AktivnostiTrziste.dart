@@ -19,7 +19,7 @@ class AktivnostiTrziste extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Dosegni izvrsnost!'),
+        title: const Text('Upis učenika'),
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,

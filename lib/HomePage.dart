@@ -163,7 +163,7 @@ class HomePage extends StatelessWidget {
                     ),
                     const SizedBox(width: 10),
                     const Text(
-                      'Dosegni izvrsnost!',
+                      'Upisi - informacije',
                       style: TextStyle(fontSize: 22),
                     ),
                   ],

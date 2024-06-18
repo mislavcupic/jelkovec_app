@@ -21,7 +21,7 @@ class Siz extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                'Tekst za prvu pomoć ',
+                'Škola i zajednica je fakultativna nastava koja omogućuje učenicima da se uključe u aktivniji pristup i doprinos pozitivnim promjenama u društvenoj zajednici. Učenici sami istražuju, promišljaju te stječu iskustvo u različitim područjima koji se tiču škole i šire društvene zajednice. Pritom upoznaju i neke od znanstvenih načina prikupljanja podataka i djelovanja prema dobivenim podacima. ',
                 style: TextStyle(fontSize: 16),
                 textAlign: TextAlign.justify,
               ),
