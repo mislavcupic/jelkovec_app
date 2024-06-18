@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AktivnostiTrziste extends StatelessWidget {
-  List<String> imagePaths = [
+  final List<String> imagePaths = [
     'android/assets/images/programming.jpg',
     'android/assets/images/people.jpg',
     'android/assets/images/jelkovec3.jpg',
@@ -13,7 +14,7 @@ class AktivnostiTrziste extends StatelessWidget {
     'android/assets/images/jelkovec8.jpg',
   ];
 
-  AktivnostiTrziste({Key? key});
+  AktivnostiTrziste({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,10 +51,30 @@ class AktivnostiTrziste extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(
-                'Upoznaj svijet programiranja, web dizajna, elektrotehnike i robotike. Ovdje ćeš steći osnovna i napredna znanja koja će ti pomoći da razvijaš jednostavnije, kao i kompleksnije i zahtjevnije koncepte iz navedenih područja. Srednja škola Jelkovec nudi ti širok izbor mogućnosti. ',
-                style: TextStyle(fontSize: 20),
-                textAlign: TextAlign.justify,
+              child: Card(
+                elevation: 4, // Adjust the elevation for the shadow effect
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10), // Adjust the border radius for rounded corners
+                ),
+                child: InkWell(
+                  onTap: _launchURL,
+                  child: Container(
+                    width: 300,
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(Icons.assignment),
+                        const SizedBox(height: 10),
+                        const Text(
+                          'Upisi i ostale informacije o Srednjoj školi Jelkovec',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ),
             ),
           ],
@@ -61,4 +82,12 @@ class AktivnostiTrziste extends StatelessWidget {
       ),
     );
   }
+
+  void _launchURL() async {
+    final Uri url = Uri.parse('http://www.ss-jelkovec.skole.hr/');
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
+    }
+  }
 }
+
