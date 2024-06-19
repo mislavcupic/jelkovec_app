@@ -43,13 +43,13 @@ class ActivityCard extends StatelessWidget {
               child: Image.asset(
                 imagePath,
                 width: double.infinity,
-                height: 150,
+                height: 170,
                 fit: BoxFit.cover,
               ),
             ),
             Container(
               width: double.infinity,
-              height: 150,
+              height: 170,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
                 color: Colors.black.withOpacity(0.5),

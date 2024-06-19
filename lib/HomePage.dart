@@ -128,7 +128,7 @@ class HomePage extends StatelessWidget {
                     ),
                     const SizedBox(width: 10),
                     const Text(
-                      'Izvannastavne aktivnosti',
+                      'Kurikularne aktivnosti',
                       style: TextStyle(fontSize: 18),
                     ),
                   ],
