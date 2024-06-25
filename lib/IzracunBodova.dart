@@ -59,8 +59,8 @@ class _IzracunBodovaState extends State<IzracunBodova> {
             children: [
               // Radio buttons for selecting smjer
               RadioListTile(
-                title: const Text('Elektrotehničar'),
-                value: 'Elektrotehničar',
+                title: const Text('Elektrotehničar (bodovni prag: 60)'),
+                value: 'Elektrotehničar (bodovni prag: 60)',
                 groupValue: selectedSmjer,
                 onChanged: (value) {
                   setState(() {
@@ -69,8 +69,8 @@ class _IzracunBodovaState extends State<IzracunBodova> {
                 },
               ),
               RadioListTile(
-                title: const Text('Tehničar za elektroniku'),
-                value: 'Tehničar za elektroniku',
+                title: const Text('Tehničar za elektroniku (bodovni prag: 60)'),
+                value: 'Tehničar za elektroniku (bodovni prag: 60)',
                 groupValue: selectedSmjer,
                 onChanged: (value) {
                   setState(() {
@@ -79,8 +79,8 @@ class _IzracunBodovaState extends State<IzracunBodova> {
                 },
               ),
               RadioListTile(
-                title: const Text('Tehničar za računalstvo'),
-                value: 'Tehničar za računalstvo',
+                title: const Text('Tehničar za računalstvo (bodovni prag: 64)'),
+                value: 'Tehničar za računalstvo (bodovni prag: 64)',
                 groupValue: selectedSmjer,
                 onChanged: (value) {
                   setState(() {
