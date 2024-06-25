@@ -14,8 +14,8 @@ class _IzracunBodovaState extends State<IzracunBodova> {
   int opciUspjeh7 = 1;
   int opciUspjeh8 = 1;
   int hrvatskiJezik7 = 1;
-  int matematika7 = 1;
   int hrvatskiJezik8 = 1;
+  int matematika7 = 1;
   int matematika8 = 1;
   int straniJezik7 = 1;
   int straniJezik8 = 1;
@@ -34,11 +34,11 @@ class _IzracunBodovaState extends State<IzracunBodova> {
     // Implementirajte logiku za dobivanje bodovnog praga na temelju odabranog smjera
     // Na primjer, možete koristiti switch-case za različite smjerove i vratiti odgovarajući bodovni prag
     switch (smjer) {
-      case 'Elektrotehničar':
+      case 'Elektrotehničar (bodovni prag: 60)':
         return 60;
-      case 'Tehničar za elektroniku':
+      case 'Tehničar za elektroniku (bodovni prag: 60)':
         return 60;
-      case 'Tehničar za računalstvo':
+      case 'Tehničar za računalstvo (bodovni prag: 64)':
         return 64;
       default:
         return 0; // Defaultni bodovni prag, možete prilagoditi prema potrebi
@@ -116,17 +116,18 @@ class _IzracunBodovaState extends State<IzracunBodova> {
                   hrvatskiJezik7 = newValue;
                 });
               }),
-              _buildSlider('Matematika (7. razred)', matematika7, (newValue) {
-                setState(() {
-                  matematika7 = newValue;
-                });
-              }),
               _buildSlider(
                   'Hrvatski jezik (8. razred)', hrvatskiJezik8, (newValue) {
                 setState(() {
                   hrvatskiJezik8 = newValue;
                 });
               }),
+              _buildSlider('Matematika (7. razred)', matematika7, (newValue) {
+                setState(() {
+                  matematika7 = newValue;
+                });
+              }),
+
               _buildSlider('Matematika (8. razred)', matematika8, (newValue) {
                 setState(() {
                   matematika8 = newValue;
@@ -259,7 +260,7 @@ class _IzracunBodovaState extends State<IzracunBodova> {
                         int bodovniPragSmjera = getBodovniPrag(selectedSmjer);
 
                         // Check the comparison of total points with the score threshold for the selected smjer
-                        if (ukupnoBodova > bodovniPragSmjera) {
+                        if (ukupnoBodova >= bodovniPragSmjera) {
                           // If they are higher, congratulate the user
                           showDialog(
                             context: context,
