@@ -4,12 +4,21 @@ import 'package:jelkovec_app/Home.dart';
 import 'package:jelkovec_app/HomePage.dart';
 import 'package:jelkovec_app/IzracunBodova.dart';
 import 'package:jelkovec_app/SkolaInfo.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:jelkovec_app/firebase_messaging_service.dart';
+import 'package:jelkovec_app/NotificationService.dart';
+import 'package:jelkovec_app/schedule_service.dart';
 
 
 
-
-void main() => runApp(const MyApp());
-
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  await NotificationService.initialize();
+  await MyFirebaseMessagingService.initialize();
+  await ScheduleService.initialize();
+  runApp(MyApp());
+}
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
