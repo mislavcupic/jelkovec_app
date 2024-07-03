@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="gcm_defaultSenderId" translatable="false">924668077900</string>
+    <string name="google_api_key" translatable="false">AIzaSyBkR3dquB0zPAPvTbf_8v-RyrFiK1RuoAE</string>
+    <string name="google_app_id" translatable="false">1:924668077900:android:53e42287486d02ddeb11e9</string>
+
+    <string name="project_id" translatable="false">jelkovecapp</string>
+</resources>

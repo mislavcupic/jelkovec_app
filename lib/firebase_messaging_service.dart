@@ -2,14 +2,19 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:jelkovec_app/NotificationService.dart'; // Adjust path as needed
 import 'package:firebase_core/firebase_core.dart';
 
-class MyFirebaseMessagingService {
+
+class FirebaseMessagingService {
   static Future<void> initialize() async {
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
     FirebaseMessaging messaging = FirebaseMessaging.instance;
 
-    // Request permissions for iOS
-    await messaging.requestPermission();
+    // Handle permissions for Android
+    await messaging.setForegroundNotificationPresentationOptions(
+      alert: true,
+      badge: true,
+      sound: true,
+    );
 
     // Get the token and save it
     String? token = await messaging.getToken();

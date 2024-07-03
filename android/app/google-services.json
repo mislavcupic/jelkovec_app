@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "924668077900",
+    "project_id": "jelkovecapp",
+    "storage_bucket": "jelkovecapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:924668077900:android:53e42287486d02ddeb11e9",
+        "android_client_info": {
+          "package_name": "hr.jelkovec_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkR3dquB0zPAPvTbf_8v-RyrFiK1RuoAE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
