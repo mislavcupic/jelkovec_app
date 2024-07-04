@@ -59,7 +59,10 @@ android {
         versionName flutterVersionName
         multiDexEnabled true
     }
-
+    lintOptions {
+        warningsAsErrors true
+        enable 'Deprecation'
+    }
     buildTypes {
 
         release {
