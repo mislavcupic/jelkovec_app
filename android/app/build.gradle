@@ -68,13 +68,6 @@ android {
             signingConfig signingConfigs.debug
         }
     }
-}
-
-flutter {
-    source '../..'
-}
-android {
-
     signingConfigs {
         release {
             keyAlias 'my-key-alias'
@@ -90,4 +83,9 @@ android {
         }
     }
 }
+
+flutter {
+    source '../..'
+}
+
 apply plugin: 'com.google.gms.google-services'

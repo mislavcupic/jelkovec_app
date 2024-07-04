@@ -6,9 +6,6 @@
   },
   "client": [
     {
-      "analytics_service": {
-        "disabled": true
-      },
       "client_info": {
         "mobilesdk_app_id": "1:924668077900:android:53e42287486d02ddeb11e9",
         "android_client_info": {
