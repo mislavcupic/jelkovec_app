@@ -48,6 +48,7 @@ class _IzracunBodovaState extends State<IzracunBodova> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       appBar: AppBar(
         title: const Text('Izračunaj svoje bodove'),
       ),

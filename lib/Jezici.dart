@@ -9,27 +9,33 @@ class Jezici extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Jezici u Srednjoj školi Jelkovec'),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            ClipRRect(
-              child: Image.asset(
-                'android/assets/images/languages.png',
-                fit: BoxFit.cover,
+      body: Stack(
+        fit: StackFit.expand, // Make the Stack fill the entire Scaffold
+        children: [
+          Image.asset(
+            'android/assets/images/languages.png',
+            fit: BoxFit.cover,
+          ),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.black.withOpacity(0.8), // Semi-transparent black background
+            ),
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const SizedBox(height: kToolbarHeight), // Space for the app bar
+                  Text(
+                    'Pripreme za državnu maturu, fakultativne nastave, mreža čitanja, projekti, nastupi na svečanim dodjelama, uvježbavanje komunikacijskih procesa, medijske kulture, projekti, posjeti stranim državama u sklopu projekata, spajanje struke i najbitnijeg, znanja jezika. Koliko jezika čovjek poznaje, toliko vrijedi! Upoznaj se sa svjetskim jezicima, upotrijebi ih u promociji vlastitog znanja i strukovnog napretka, osvoji tržište i ponosi se znanjem koje danas mnogi nemaju. Izvrsni rezultati na natjecanjima kao i na državnoj maturi su mjerilo kvalitete našeg strukovnog vijeća.',
+                    style: TextStyle(fontSize: 16, color: Colors.white),
+                    textAlign: TextAlign.justify,
+                  ),
+                ],
               ),
             ),
-            const SizedBox(height: 8),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                'Ovo je prostor za tekst ispod fotografije. Ovdje možemo napisati sve o jezičnom aktivu i aktivnostima koje se nude.',
-                style: TextStyle(fontSize: 16),
-                textAlign: TextAlign.justify,
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

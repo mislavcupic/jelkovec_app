@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'build_menu_item.dart';  // Import the buildMenuItem function
 
 class AktivnostiTrziste extends StatelessWidget {
   final List<String> imagePaths = [
@@ -52,9 +53,9 @@ class AktivnostiTrziste extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Card(
-                elevation: 4, // Adjust the elevation for the shadow effect
+                elevation: 4,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10), // Adjust the border radius for rounded corners
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 child: InkWell(
                   onTap: _launchURL,
@@ -90,4 +91,3 @@ class AktivnostiTrziste extends StatelessWidget {
     }
   }
 }
-

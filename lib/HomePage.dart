@@ -13,164 +13,80 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+      backgroundColor: Colors.black,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-              ),
+            buildMenuItem(
+              context,
+              'android/assets/images/jelkovec3.jpg',
+              'Izračunaj bodove',
+              const IzracunBodova(),
+            ),
+            buildMenuItem(
+              context,
+              'android/assets/images/jelkovec4.jpg',
+              'Aktivnosti u školi',
+              const Home(),
+            ),
+            buildMenuItem(
+              context,
+              'android/assets/images/siz.jpg',
+              'Kurikularne aktivnosti',
+              const Izvannastavne(),
+            ),
+            buildMenuItem(
+              context,
+              'android/assets/images/apply.jpg',
+              'Upisi - informacije',
+              AktivnostiTrziste(),
+            ),
+            // Add more menu items here...
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildMenuItem(BuildContext context, String imagePath, String title, Widget destination) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => destination,
+          ),
+        );
+      },
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 10),
+        height: 180,
+        child: Stack(
+          children: [
+            Positioned.fill(
               child: Image.asset(
-                'android/assets/images/jelkovec2.jpg',
+                imagePath,
                 fit: BoxFit.cover,
-                width: 200,
-                height: 200,
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const IzracunBodova(),
-                  ),
-                );
-              },
+            Positioned.fill(
               child: Container(
-                margin: const EdgeInsets.all(20),
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Colors.grey.withOpacity(0.5),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Row(
-                  children: [
-                    ClipOval(
-                      child: Image.asset(
-                        'android/assets/images/calculator.jpg',
-                        width: 50,
-                        height: 50,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    const Text(
-                      'Izračunaj bodove',
-                      style: TextStyle(fontSize: 22),
-                    ),
-                  ],
-                ),
+                color: Colors.black.withOpacity(0.5),
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const Home(),
-                  ),
-                );
-              },
-              child: Container(
-                margin: const EdgeInsets.all(20),
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Colors.yellow.withOpacity(0.5),
-                  borderRadius: BorderRadius.circular(20),
+            Center(
+              child: Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 24,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
                 ),
-                child: Row(
-                  children: [
-                    ClipOval(
-                      child: Image.asset(
-                        'android/assets/images/education.jpg',
-                        width: 50,
-                        height: 50,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    const Text(
-                      'Aktivnosti u školi',
-                      style: TextStyle(fontSize: 20),
-                    ),
-                  ],
-                ),
+                textAlign: TextAlign.center,
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const Izvannastavne(),
-                  ),
-                );
-              },
-              child: Container(
-                margin: const EdgeInsets.all(20),
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Colors.orange.withOpacity(0.5),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Row(
-                  children: [
-                    ClipOval(
-                      child: Image.asset(
-                        'android/assets/images/stem.jpg',
-                        width: 50,
-                        height: 50,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    const Text(
-                      'Kurikularne aktivnosti',
-                      style: TextStyle(fontSize: 18),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>  AktivnostiTrziste(),
-                  ),
-                );
-              },
-              child: Container(
-                margin: const EdgeInsets.all(20),
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Colors.red.withOpacity(0.5),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Row(
-                  children: [
-                    ClipOval(
-                      child: Image.asset(
-                        'android/assets/images/inovation.jpg',
-                        width: 50,
-                        height: 50,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    const Text(
-                      'Upisi - informacije',
-                      style: TextStyle(fontSize: 22),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            // Dodajte ostale widgete ovdje...
           ],
         ),
       ),

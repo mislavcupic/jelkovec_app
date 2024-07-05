@@ -5,66 +5,56 @@ import 'package:jelkovec_app/Tzk.dart';
 import 'package:jelkovec_app/AmerickaKultura.dart';
 import 'package:jelkovec_app/Siz.dart';
 
-class ActivityCard extends StatelessWidget {
-  final String imagePath;
-  final String text;
-  final String route;
-
-  const ActivityCard({
-    Key? key,
-    required this.imagePath,
-    required this.text,
-    required this.route,
-  }) : super(key: key);
+class Izvannastavne extends StatelessWidget {
+  const Izvannastavne({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.pushNamed(context, route);
-      },
-      child: Container(
-        margin: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black12,
-              offset: Offset(0, 2),
-              blurRadius: 4,
-            ),
-          ],
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text("Kurikularne aktivnosti"),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
         ),
-        child: Stack(
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(16),
-              child: Image.asset(
-                imagePath,
-                width: double.infinity,
-                height: 170,
-                fit: BoxFit.cover,
-              ),
+            buildMenuItem(
+              context,
+              'android/assets/images/robotics.jpg',
+              'Robotika',
+              const Robotika(),
             ),
-            Container(
-              width: double.infinity,
-              height: 170,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                color: Colors.black.withOpacity(0.5),
-              ),
-              child: Center(
-                child: Text(
-                  text,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
+            buildMenuItem(
+              context,
+              'android/assets/images/firstaid.jpg',
+              'Prva pomoć',
+              const PrvaPomoc(),
+            ),
+            buildMenuItem(
+              context,
+              'android/assets/images/klizanje2.jpg',
+              'TZK',
+               Tzk(),
+            ),
+            buildMenuItem(
+              context,
+              'android/assets/images/people.jpg',
+              'Američka kultura',
+              const AmerickaKultura(),
+            ),
+            buildMenuItem(
+              context,
+              'android/assets/images/siz.jpg',
+              'Škola i zajednica',
+              const Siz(),
             ),
           ],
         ),
@@ -73,69 +63,49 @@ class ActivityCard extends StatelessWidget {
   }
 }
 
-
-class Izvannastavne extends StatelessWidget {
-  const Izvannastavne({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      routes: {
-        '/prvapomoc': (context) => const PrvaPomoc(),
-        '/robotika': (context) => const Robotika(),
-        '/tzk': (context) =>  Tzk(),
-        '/americka': (context) => const AmerickaKultura(),
-        '/siz': (context) => const Siz(),
-      },
-      home: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text("Kurikularne aktivnosti"),
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
+Widget buildMenuItem(BuildContext context, String imagePath, String title, Widget destination) {
+  return Padding(
+    padding: const EdgeInsets.only(bottom: 16.0), // Add padding below each image
+    child: InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => destination,
           ),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: GridView.count(
-            crossAxisCount: 2,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
+        );
+      },
+      child: AspectRatio(
+        aspectRatio: 16 / 9,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(8.0),
+          child: Stack(
+            fit: StackFit.expand,
             children: [
-              ActivityCard(
-                imagePath: "android/assets/images/robotics.jpg",
-                text: "Robotika",
-                route: "/robotika",
+              Image.asset(
+                imagePath,
+                fit: BoxFit.cover,
               ),
-              ActivityCard(
-                imagePath: "android/assets/images/firstaid.jpg",
-                text: "Prva pomoć",
-                route: "/prvapomoc",
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.7), // Background color with opacity
+                ),
+                child: Center(
+                  child: Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
               ),
-              ActivityCard(
-                imagePath: "android/assets/images/klizanje2.jpg",
-                text: "TZK",
-                route: "/tzk",
-              ),
-              ActivityCard(
-                imagePath: "android/assets/images/people.jpg",
-                text: "Američka kultura",
-                route: "/americka",
-              ),
-              ActivityCard(
-                imagePath: "android/assets/images/siz.jpg",
-                text: "Škola i zajednica",
-                route: "/siz",
-              ),
-              // Dodajte više ActivityCard widgeta po potrebi
             ],
           ),
         ),
       ),
-    );
-  }
+    ),
+  );
 }
