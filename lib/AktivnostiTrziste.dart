@@ -80,9 +80,8 @@ class AktivnostiTrziste extends StatelessWidget {
 
   void _launchURL() async {
     final Uri url = Uri.parse('http://www.ss-jelkovec.skole.hr/skola/upisi');
-    if (!await canLaunch(url.toString())) {
-      throw 'Could not launch $url';
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
     }
-    await launch(url.toString());
   }
 }

@@ -94,11 +94,11 @@ class Tzk extends StatelessWidget {
     );
   }
 
+
   void _launchURL() async {
     final Uri url = Uri.parse('https://www.instagram.com/fakultativni_tzk?igsh=MXI1cG1sN3Nld3U4Nw%3D%3D&utm_source=qr');
-    if (!await canLaunch(url.toString())) {
-      throw 'Could not launch $url';
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
     }
-    await launch(url.toString());
   }
 }
