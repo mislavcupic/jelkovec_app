@@ -7,7 +7,7 @@ class Drustveni extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Drustveni aktiv'),
+        title: const Text('Društveni aktiv'),
       ),
       body: Stack(
         fit: StackFit.expand,

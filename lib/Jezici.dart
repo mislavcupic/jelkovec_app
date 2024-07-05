@@ -13,7 +13,7 @@ class Jezici extends StatelessWidget {
         fit: StackFit.expand, // Make the Stack fill the entire Scaffold
         children: [
           Image.asset(
-            'android/assets/images/languages.png',
+            'android/assets/images/languages2.jpg',
             fit: BoxFit.cover,
           ),
           Container(
