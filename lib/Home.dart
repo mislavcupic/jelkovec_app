@@ -59,7 +59,7 @@ class Home extends StatelessWidget {
               ),
               buildMenuItem(
                 context,
-                "android/assets/images/languages.png",
+                "android/assets/images/languages2.jpg",
                 "Jezični aktiv",
                 const Jezici(),
               ),
