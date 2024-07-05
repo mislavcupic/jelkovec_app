@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'build_menu_item.dart';  // Import the buildMenuItem function
 
 class AktivnostiTrziste extends StatelessWidget {
   final List<String> imagePaths = [
@@ -23,71 +22,67 @@ class AktivnostiTrziste extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Upis učenika'),
       ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            CarouselSlider(
-              options: CarouselOptions(
-                height: 200.0,
-                enlargeCenterPage: true,
-                autoPlay: true,
-                aspectRatio: 16 / 9,
-                autoPlayCurve: Curves.fastOutSlowIn,
-                enableInfiniteScroll: true,
-                autoPlayAnimationDuration: const Duration(milliseconds: 1700),
-                viewportFraction: 0.8,
-              ),
-              items: imagePaths.map((String imagePath) {
-                return Builder(
-                  builder: (BuildContext context) {
-                    return Image.asset(
-                      imagePath,
-                      fit: BoxFit.cover,
-                    );
-                  },
-                );
-              }).toList(),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Card(
-                elevation: 4,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: InkWell(
-                  onTap: _launchURL,
-                  child: Container(
-                    width: 300,
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(Icons.assignment),
-                        const SizedBox(height: 10),
-                        const Text(
-                          'Upisi i ostale informacije o Srednjoj školi Jelkovec',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 20),
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          // Background Image
+          Image.asset(
+            'android/assets/images/school.jpg',
+            fit: BoxFit.cover,
+          ),
+          // Black Overlay with Container
+          Container(
+            color: Colors.black.withOpacity(0.6),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  SizedBox(height: kToolbarHeight), // Space for the app bar
+
+                  const SizedBox(height: 8),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Card(
+                      elevation: 4,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+
+                      ),
+                      child: InkWell(
+                        onTap: _launchURL,
+                        child: Container(
+                          padding: const EdgeInsets.all(16),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.assignment, size: 50),
+                              SizedBox(height: 10),
+                              Text(
+                                'Upisi i ostale informacije o Srednjoj školi Jelkovec',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontSize: 20),
+                              ),
+                            ],
+                          ),
                         ),
-                      ],
+                      ),
                     ),
                   ),
-                ),
+                  const SizedBox(height: 16), // Add spacing below the card
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 
   void _launchURL() async {
     final Uri url = Uri.parse('http://www.ss-jelkovec.skole.hr/skola/upisi');
-    if (!await launchUrl(url)) {
-      throw Exception('Could not launch $url');
+    if (!await canLaunch(url.toString())) {
+      throw 'Could not launch $url';
     }
+    await launch(url.toString());
   }
 }
