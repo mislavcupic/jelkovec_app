@@ -1,13 +1,20 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:jelkovec_app/NotificationService.dart'; // Adjust path as needed
+import 'package:permission_handler/permission_handler.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:jelkovec_app/NotificationService.dart'; // Adjust path as needed
 import 'package:firebase_core/firebase_core.dart';
-
-
 class FirebaseMessagingService {
   static Future<void> initialize() async {
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
     FirebaseMessaging messaging = FirebaseMessaging.instance;
+
+    // Check notification permissions
+    PermissionStatus permissionStatus = await Permission.notification.status;
+    if (permissionStatus != PermissionStatus.granted) {
+      await Permission.notification.request();
+    }
 
     // Handle permissions for Android
     await messaging.setForegroundNotificationPresentationOptions(
